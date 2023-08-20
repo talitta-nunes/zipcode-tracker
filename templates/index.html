@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscador de CEP</title>
+</head>
+<body>
+    <h1>Address Lookup</h1>
+    <form id="address-form">
+        <label for="cep">Entrar com CEP:</label>
+        <input type="text" id="cep" name="cep">
+        <button type="submit">Busque seu endereço</button>
+    </form>
+    <div id="address-result"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#address-form').submit(function(event) {
+                event.preventDefault();
+                var cep = $('#cep').val();
+                $.post('/get_address', { cep: cep }, function(data) {
+                    if (data) {
+                        var addressHtml = `
+                            <p><strong>CEP:</strong> ${data.cep}</p>
+                            <p><strong>Logradouro:</strong> ${data.logradouro}</p>
+                            <p><strong>Complemento:</strong> ${data.complemento}</p>
+                            <p><strong>Bairro:</strong> ${data.bairro}</p>
+                            <p><strong>Localidade:</strong> ${data.localidade}</p>
+                            <p><strong>UF:</strong> ${data.uf}</p>
+                        `;
+                        $('#address-result').html(addressHtml);
+                    } else {
+                        $('#address-result').html('<p>Address not found for the provided CEP.</p>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
