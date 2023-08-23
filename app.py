@@ -1,28 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-import requests
+from utils import get_address_from_cep
+import geopandas as gpd
+from geopy.geocoders import Nominatim
 
 app = Flask(__name__)
-
-def get_address_from_cep(cep):
-    url = f"https://viacep.com.br/ws/{cep}/json/"
-    response = requests.get(url)
-    
-    if response.status_code == 200:
-        data = response.json()
-        if not data.get("erro"):
-            return {
-                "cep": data["cep"],
-                "logradouro": data["logradouro"],
-                "complemento": data.get("complemento", ""),
-                "bairro": data["bairro"],
-                "localidade": data["localidade"],
-                "uf": data["uf"]
-            }
-        else:
-            return None
-    else:
-        return None
-
 
 @app.route('/')
 def index():
