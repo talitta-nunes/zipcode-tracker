@@ -2,5 +2,27 @@
 
 O projeto criado na linguagem python e utilizando flask para visualização.
 
-Foi realizado o consumo de dados da API ViaCep.
-Para acessar o projeto, basta rodar "python app.py" e acessar em seguida a url http://127.0.0.1:5000
+## Documentation
+ API ViaCep.
+
+### Getting Started
+
+Clone this repo:
+```
+git clone https://github.com/talitta-nunes/zipcode-tracker.git
+```
+
+Install the required dependencies:
+```
+pip install -r requirements.txt
+```
+
+Run the server:
+```
+python app.py
+```
+
+Access the url:
+```
+http://127.0.0.1:5000
+``` 
