@@ -11,7 +11,6 @@
         <button type="submit">Buscar CEP</button>
     </form>
     <div id="address-result"></div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -33,6 +32,7 @@
                         $('#address-result').html('<p>Address not found for the provided CEP.</p>');
                     }
                 });
+                $('#cep').val('');
             });
         });
     </script>
